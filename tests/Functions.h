@@ -1,6 +1,12 @@
 #include <iostream>
 #include <math.h>
 
+// y(0) = 0.5
+// 0 <= t <= 2
+double f0(double y, double t){
+    return y - pow(t, 2) + 1;
+}
+
 // y(0) = 0, h = 0.5
 // 0 <= t <= 1
 double f1(double y, double t){
