@@ -3,6 +3,7 @@
 
 // y(0) = 0.5
 // 0 <= t <= 2
+// alpha = 0.5
 double f0(double y, double t){
     return y - pow(t, 2) + 1;
 }
