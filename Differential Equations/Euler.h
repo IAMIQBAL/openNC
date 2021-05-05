@@ -24,14 +24,14 @@ public:
     double **approximate(){
         tw[0][0] = a;
         tw[1][0] = alpha;
-        f4(tw[1][0], tw[0][0]);
+        f0(tw[1][0], tw[0][0]);
         for (int i = 1; i <= n; i++){
             
             //w
-            tw[1][i] = tw[1][i-1] + (h * f4(tw[1][i-1], tw[0][i-1]));
+            tw[1][i] = tw[1][i-1] + (h * f0(tw[1][i-1], tw[0][i-1]));
             // t
             tw[0][i] = a + (i * h);
-            f4(tw[1][i], tw[0][i]);
+            f0(tw[1][i], tw[0][i]);
         }
 
         return tw;
