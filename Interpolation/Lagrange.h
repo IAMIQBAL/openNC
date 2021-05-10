@@ -6,21 +6,22 @@ private:
     double X, *x, *y, *l, ln, ld, Pn;
 
 public:
-    Lagrange(int n){
+    Lagrange(int n, double X){
         this->n = n;
+        this->X = X;
         x = new double[n];
         y = new double[n];
         l = new double[n];
     }
 
     void setX(){
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i <= n; i++){
             std::cin >> x[i];
         }
     }
 
     void setY(){
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i <= n; i++){
             std::cin >> y[i];
         }
     }
@@ -34,10 +35,10 @@ public:
     }
 
     double approximate(){
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i <= n; i++){
             ln = 1;
             ld = 1;
-            for (int j = 0; j < n; j++){
+            for (int j = 0; j <= n; j++){
                 if (j != i){
                     ln *= (X - x[j]);
                     ld *= (x[i] - x[j]);
@@ -46,7 +47,7 @@ public:
             l[i] = ln / ld;
         }
 
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i <= n; i++){
             Pn += (l[i] * y[i]);
         }
 
