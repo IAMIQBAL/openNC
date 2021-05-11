@@ -1,10 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "matplotlibcpp.h"
 #include "../Differential Equations/Euler.h"
 #include "../Interpolation/Lagrange.h"
-
-namespace plt = matplotlibcpp;
+#include "../Extras/plot.h"
 
 int main(){
 
@@ -34,9 +32,14 @@ int main(){
     // plt::grid(1);
     // plt::show();
 
+    draw(t, w, "Euler's Method", "t", "w");
+
     std::cout << "----- Lagrange Interpolation Test -----" << std::endl;
     
     Lagrange lgrn(10, 3.2);
+
+    std::vector<double> x(11);
+    std::vector<double> y(11);
     
     std::cout << "Enter x values: ";
     lgrn.setX();
@@ -44,6 +47,15 @@ int main(){
     lgrn.setY();
     double result = lgrn.approximate();
     std::cout << "Pn: " << result << std::endl;
+
+    for (int i = 0; i <= 10; ++i){
+        std::cout << lgrn.getX()[i] << " ";
+        x[i] = lgrn.getX()[i];
+        y[i] = lgrn.getY()[i];
+    }
+    std::cout << std::endl;
+
+    draw(x, y, "Lagrange Method", "X", "Y");
 
     return 0;
 }
