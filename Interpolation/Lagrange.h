@@ -3,16 +3,24 @@
 class Lagrange {
 private:
     int n;
-    double X, *x, *y, *l, ln, ld, Pn;
+    double *x, *y, *l, ln, ld, Pn;
 
 public:
-    Lagrange(int n, double X){
+
+    Lagrange(int n){
         this->n = n;
-        this->X = X;
         x = new double[n];
         y = new double[n];
         l = new double[n];
     }
+
+    // Lagrange(int n, double X){
+    //     this->n = n;
+    //     // this->X = X;
+    //     x = new double[n];
+    //     y = new double[n];
+    //     l = new double[n];
+    // }
 
     void setX(){
         for (int i = 0; i <= n; i++){
@@ -34,7 +42,8 @@ public:
         return y;
     }
 
-    double approximate(){
+private:
+    double calculate(double X){
         for (int i = 0; i <= n; i++){
             ln = 1;
             ld = 1;
@@ -52,5 +61,15 @@ public:
         }
 
         return Pn;
+    }
+
+public:
+    double* approximate(double *xTest){
+        double *predictedVals = new double[n];
+        for (int i = 0; i <= n; i++){
+            predictedVals[i] = calculate(xTest[i]);
+        }
+
+        return predictedVals;
     }
 };

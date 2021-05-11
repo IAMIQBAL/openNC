@@ -25,37 +25,39 @@ int main(){
         w[i] = tw[1][i];
     }
 
-    // plt::plot(t, w, "r-o");
-    // plt::title("Euler`s Method");
-    // plt::xlabel("t");
-    // plt::ylabel("w");
-    // plt::grid(1);
-    // plt::show();
-
     draw(t, w, "Euler's Method", "t", "w");
 
     std::cout << "----- Lagrange Interpolation Test -----" << std::endl;
     
-    Lagrange lgrn(10, 3.2);
+    int size = 11;
 
-    std::vector<double> x(11);
-    std::vector<double> y(11);
+    std::vector<double> x(size);
+    std::vector<double> y(size);
+    std::vector<double> xT(size);
+    std::vector<double> yPn(size);
+    double *xTest = new double[size];
+
+    for (int i = 0; i < size; i++){
+        xTest[i] = (i+3);
+    }
+
+    Lagrange lgrn(size-1);
     
     std::cout << "Enter x values: ";
     lgrn.setX();
     std::cout << "Enter y values: ";
     lgrn.setY();
-    double result = lgrn.approximate();
-    std::cout << "Pn: " << result << std::endl;
+    double* result = lgrn.approximate(xTest);
+    // std::cout << "Pn: " << result << std::endl;
 
-    for (int i = 0; i <= 10; ++i){
-        std::cout << lgrn.getX()[i] << " ";
+    for (int i = 0; i <= size; ++i){
         x[i] = lgrn.getX()[i];
         y[i] = lgrn.getY()[i];
+        xT[i] = xTest[i];
+        yPn[i] = result[i];
     }
-    std::cout << std::endl;
 
-    draw(x, y, "Lagrange Method", "X", "Y");
+    drawDouble(x, y, xT, yPn, "Lagrange Method", "X", "Y");
 
     return 0;
 }
