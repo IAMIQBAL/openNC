@@ -38,7 +38,7 @@ int main(){
     double *xTest = new double[size];
 
     for (int i = 0; i < size; i++){
-        xTest[i] = i+1;
+        xTest[i] = (i+5);
     }
 
     Lagrange lgrn(size);
@@ -57,11 +57,11 @@ int main(){
         xT[i] = xTest[i];
         yPn[i] = result[i];
 
-        std::cout << result[i] << ", ";
+        std::cout << xTest[i] << " = " << result[i] << std::endl;
     }
     std::cout << std::endl;
 
-    drawDouble(x, y, xT, yPn, "Lagrange Method", "X", "Y");
+    drawDouble<double>(x, y, xT, yPn, "Lagrange Method", "X", "Y");
 
     return 0;
 }

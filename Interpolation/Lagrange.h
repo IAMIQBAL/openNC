@@ -44,6 +44,7 @@ public:
 
 private:
     double calculate(double X){
+        Pn = 0;
         for (int i = 0; i < n; i++){
             ln = 1;
             ld = 1;
@@ -69,9 +70,6 @@ public:
         for (int i = 0; i < n; i++){
             predictedVals[i] = calculate(xTest[i]);
         }
-        Pn = 0;
-        ln = 1;
-        ld = 1;
 
         return predictedVals;
     }
