@@ -23,13 +23,13 @@ public:
     // }
 
     void setX(){
-        for (int i = 0; i <= n; i++){
+        for (int i = 0; i < n; i++){
             std::cin >> x[i];
         }
     }
 
     void setY(){
-        for (int i = 0; i <= n; i++){
+        for (int i = 0; i < n; i++){
             std::cin >> y[i];
         }
     }
@@ -44,10 +44,10 @@ public:
 
 private:
     double calculate(double X){
-        for (int i = 0; i <= n; i++){
+        for (int i = 0; i < n; i++){
             ln = 1;
             ld = 1;
-            for (int j = 0; j <= n; j++){
+            for (int j = 0; j < n; j++){
                 if (j != i){
                     ln *= (X - x[j]);
                     ld *= (x[i] - x[j]);
@@ -56,7 +56,7 @@ private:
             l[i] = ln / ld;
         }
 
-        for (int i = 0; i <= n; i++){
+        for (int i = 0; i < n; i++){
             Pn += (l[i] * y[i]);
         }
 
@@ -66,9 +66,12 @@ private:
 public:
     double* approximate(double *xTest){
         double *predictedVals = new double[n];
-        for (int i = 0; i <= n; i++){
+        for (int i = 0; i < n; i++){
             predictedVals[i] = calculate(xTest[i]);
         }
+        Pn = 0;
+        ln = 1;
+        ld = 1;
 
         return predictedVals;
     }

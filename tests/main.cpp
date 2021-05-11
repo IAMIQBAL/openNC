@@ -29,7 +29,7 @@ int main(){
 
     std::cout << "----- Lagrange Interpolation Test -----" << std::endl;
     
-    int size = 11;
+    int size = 4;
 
     std::vector<double> x(size);
     std::vector<double> y(size);
@@ -38,10 +38,10 @@ int main(){
     double *xTest = new double[size];
 
     for (int i = 0; i < size; i++){
-        xTest[i] = (i+3);
+        xTest[i] = i+1;
     }
 
-    Lagrange lgrn(size-1);
+    Lagrange lgrn(size);
     
     std::cout << "Enter x values: ";
     lgrn.setX();
@@ -50,12 +50,16 @@ int main(){
     double* result = lgrn.approximate(xTest);
     // std::cout << "Pn: " << result << std::endl;
 
-    for (int i = 0; i <= size; ++i){
+    std::cout << "Result: ";
+    for (int i = 0; i < size; ++i){
         x[i] = lgrn.getX()[i];
         y[i] = lgrn.getY()[i];
         xT[i] = xTest[i];
         yPn[i] = result[i];
+
+        std::cout << result[i] << ", ";
     }
+    std::cout << std::endl;
 
     drawDouble(x, y, xT, yPn, "Lagrange Method", "X", "Y");
 
